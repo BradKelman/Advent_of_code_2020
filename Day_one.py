@@ -1,4 +1,4 @@
-f = open("expense_report.txt", "r")
+f = open("input_files/expense_report.txt", "r")
 
 x = f.read()
 # print(type(x))
