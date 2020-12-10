@@ -23,9 +23,40 @@ def valid_ecl(passport, matches):
         return True
     else: return False
 
-# def valid_4_digits(passport, lower, upper):
-    # if passport
+def valid_num(yr, upper, lower):
+    if len(yr) == 4:
+    # to be used for validating byr, iyr, eyr
+        return lower <= int(yr) <= upper
 
+
+def valid_pid(passport):
+    pid_regex = '0[0-9a-f]{8}'
+    print(pid_regex)
+    if re.match(pid_regex, passport):
+        return True
+    else:
+        return False
+
+def valid_hcl(hcl):
+    hcl_regex = '#[0-9a-z]{6}'
+    if re.match(hcl_regex, hcl):
+        return True
+
+
+def valid_hgt(hgt):
+    cm_regex = 'cm$'
+    in_regex = 'in'
+    result = re.match(cm_regex, hgt)
+    if result:
+        hgt = hgt.replace('cm','')
+        return 150 <= int(hgt) <= 193
+    else:
+        print('why you not working?!?')
+
+print('is this a valid height?: ', valid_hgt('175cm'))
+
+print('is this year valid?: ', valid_num('1996', 2010, 1920))
+print(valid_pid('012345abc'))
 matches = ['ecl:', 'pid:', 'eyr:', 'hcl:', 'byr:', 'iyr:', 'hgt:']
 # valid_passport(y, matches)
 ecl_matches = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
@@ -47,7 +78,7 @@ def dict_creator(list_of_strings):
             d[i[0]] = i[1]
         list_of_dict.append(d)
         # print(d)
-    print(list_of_dict[0]['eyr'])
+    print(list_of_dict[0])
     return d
 
 
